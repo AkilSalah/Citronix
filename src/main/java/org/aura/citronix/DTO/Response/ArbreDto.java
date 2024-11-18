@@ -1,6 +1,5 @@
-package org.aura.citronix.DTO;
+package org.aura.citronix.DTO.Response;
 
-import jakarta.persistence.Transient;
 import lombok.*;
 
 import java.time.LocalDate;

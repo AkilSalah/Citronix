@@ -1,4 +1,4 @@
-package org.aura.citronix.DTO;
+package org.aura.citronix.DTO.Response;
 
 import lombok.*;
 
