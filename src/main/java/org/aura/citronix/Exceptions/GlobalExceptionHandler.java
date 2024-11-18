@@ -18,8 +18,10 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-
-
+    @ExceptionHandler(ChampException.class)
+    public ResponseEntity<Map<String,Object>> handleChampException(ChampException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

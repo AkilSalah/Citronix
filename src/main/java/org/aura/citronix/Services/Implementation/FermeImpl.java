@@ -62,4 +62,6 @@ public class FermeImpl implements FermeInterface {
         Ferme ferme = fermeRepo.findById(id).orElseThrow(()-> new FermeException(id));
         fermeRepo.delete(ferme);
     }
+
+
 }
