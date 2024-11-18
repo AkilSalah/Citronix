@@ -12,6 +12,7 @@ import java.util.List;
 public class ChampDto {
     private int id;
     private double champSurface;
+    private String champName;
     private int fermeId;
     private List<ArbreDto> arbres;
 }

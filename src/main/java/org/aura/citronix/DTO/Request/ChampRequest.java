@@ -1,25 +1,22 @@
-package org.aura.citronix.Entities;
+package org.aura.citronix.DTO.Request;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import org.aura.citronix.Entities.Ferme;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
-@NoArgsConstructor
-public class Champ {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+@Builder
+public class ChampRequest {
     @Column(name = "champ_surface")
     @Positive(message = "La surface du champ doit être un nombre positif.")
     private double champSurface;
@@ -31,7 +28,4 @@ public class Champ {
     @ManyToOne
     @JoinColumn(name = "ferme_id", nullable = false)
     private Ferme ferme;
-
-    @OneToMany(mappedBy = "champ", cascade = CascadeType.ALL)
-    private List<Arbre> arbres = new ArrayList<>();
 }

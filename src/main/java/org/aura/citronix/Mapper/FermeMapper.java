@@ -4,7 +4,6 @@ import org.aura.citronix.DTO.Request.FermeRequest;
 import org.aura.citronix.DTO.Response.FermeDto;
 import org.aura.citronix.Entities.Ferme;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 
