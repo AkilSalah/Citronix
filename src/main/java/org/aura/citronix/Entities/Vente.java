@@ -2,9 +2,16 @@ package org.aura.citronix.Entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.*;
+
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Vente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

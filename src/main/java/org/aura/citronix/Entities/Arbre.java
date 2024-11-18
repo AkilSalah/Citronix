@@ -25,7 +25,7 @@ public class Arbre {
     @Column(name = "date_de_plantation")
     private LocalDate dateDePlantation;
 
-    @Positive(message = "L'âge doit être un nombre positif.")
+    @Transient
     private int age;
 
     @Positive(message = "La productivité annuelle doit être un nombre positif.")
