@@ -1,32 +1,28 @@
 package org.aura.citronix.DTO.Request;
 
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class FermeRequest {
     @NotBlank(message = "Le nom de la ferme ne peut pas être vide")
-    @Size(max = 100)
+    @Size(max = 100, message = "Le nom de la ferme ne doit pas dépasser 100 caractères")
     private String name;
 
     @NotBlank(message = "La localisation est obligatoire")
-    @Size(max = 255)
+    @Size(max = 255, message = "La localisation ne doit pas dépasser 255 caractères")
     private String localisation;
 
+    @NotNull(message = "La superficie est obligatoire")
     @Positive(message = "La superficie doit être positive")
-    private double superficie;
+    private Double superficie;
 
-    @FutureOrPresent
+    @NotNull(message = "La date de création est obligatoire")
+    @FutureOrPresent(message = "La date de création doit être dans le présent ou le futur")
     private LocalDate dateDeCreation;
 }

@@ -2,7 +2,6 @@ package org.aura.citronix.Services.Interfaces;
 
 import org.aura.citronix.DTO.Request.FermeRequest;
 import org.aura.citronix.DTO.Response.FermeDto;
-import org.aura.citronix.Entities.Ferme;
 
 import java.util.List;
 
