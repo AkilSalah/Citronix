@@ -1,7 +1,7 @@
 package org.aura.citronix.Services.Implementation;
 
 import org.aura.citronix.DTO.Request.FermeRequest;
-import org.aura.citronix.DTO.Response.FermeDto;
+import org.aura.citronix.DTO.Response.FermeResponse;
 import org.aura.citronix.Entities.Ferme;
 import org.aura.citronix.Exceptions.FermeException;
 import org.aura.citronix.Mapper.FermeMapper;
@@ -15,8 +15,8 @@ import java.util.List;
 @Service
 @Transactional
 public class FermeImpl implements FermeInterface {
-    private FermeMapper fermeMapper;
-    private FermeRepo fermeRepo;
+    private final FermeMapper fermeMapper;
+    private final FermeRepo fermeRepo;
 
     @Autowired
     public FermeImpl(FermeRepo fermeRepo, FermeMapper fermeMapper) {
@@ -25,19 +25,19 @@ public class FermeImpl implements FermeInterface {
     }
 
     @Override
-    public List<FermeDto> getFermeList() {
+    public List<FermeResponse> getFermeList() {
         List<Ferme> fermeList = fermeRepo.findAll();
         return fermeMapper.toDTOList(fermeList) ;
     }
 
     @Override
-    public FermeDto getFermeById(int id) {
+    public FermeResponse getFermeById(int id) {
         Ferme ferme = fermeRepo.findById(id).orElseThrow(()-> new FermeException(id));
         return fermeMapper.toDTO(ferme);
     }
 
     @Override
-    public FermeDto addFerme(FermeRequest fermeRequest) {
+    public FermeResponse addFerme(FermeRequest fermeRequest) {
         if (fermeRequest == null) {
             throw new IllegalArgumentException("La ferme ne peut pas être nulle");
         }
@@ -47,7 +47,7 @@ public class FermeImpl implements FermeInterface {
     }
 
     @Override
-    public FermeDto updateFerme(FermeRequest fermeRequest, int id) {
+    public FermeResponse updateFerme(FermeRequest fermeRequest, int id) {
         Ferme existingFerme = fermeRepo.findById(id).orElseThrow(()-> new FermeException(id));
         existingFerme.setName(fermeRequest.getName());
         existingFerme.setLocalisation(fermeRequest.getLocalisation());

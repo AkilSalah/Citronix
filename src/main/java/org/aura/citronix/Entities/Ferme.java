@@ -1,10 +1,7 @@
 package org.aura.citronix.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -29,6 +26,7 @@ public class Ferme {
     private LocalDate dateDeCreation;
 
     @OneToMany(mappedBy = "ferme",cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Champ> champs;
 
 }

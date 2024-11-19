@@ -2,13 +2,10 @@ package org.aura.citronix.DTO.Response;
 
 import java.util.List;
 
-
-
-public record ChampDto (
+public record ChampResponse(
         int id,
         double champSurface,
-        String champName
-//        FermeDto ferme,
-//        List<ArbreDto> arbres
+        String champName,
+        FermeResponse ferme,
+        List<ArbreDto> arbres
 ) {}
-

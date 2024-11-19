@@ -1,7 +1,7 @@
 package org.aura.citronix.Mapper;
 
 import org.aura.citronix.DTO.Request.FermeRequest;
-import org.aura.citronix.DTO.Response.FermeDto;
+import org.aura.citronix.DTO.Response.FermeResponse;
 import org.aura.citronix.Entities.Ferme;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,8 +13,10 @@ public interface FermeMapper {
 
     Ferme requestToEntity(FermeRequest request);
 
-    FermeDto toDTO(Ferme ferme);
+    @Mapping(target = "champs" ,ignore = true)
+    FermeResponse toDTO(Ferme ferme);
 
-    List<FermeDto> toDTOList(List<Ferme> fermes);
+    Ferme responseToEntity(FermeResponse response);
 
+    List<FermeResponse> toDTOList(List<Ferme> fermes);
 }

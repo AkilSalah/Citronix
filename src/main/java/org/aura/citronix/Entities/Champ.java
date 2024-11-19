@@ -1,5 +1,7 @@
 package org.aura.citronix.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.*;
@@ -18,17 +20,16 @@ public class Champ {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "champ_name", nullable = false)
     private String champName;
 
-    @Column(name = "champ_surface", nullable = false)
     private double champSurface;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ferme_id", nullable = false)
+    @JsonIgnore
     private Ferme ferme;
 
     @OneToMany(mappedBy = "champ", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Arbre> arbres = new ArrayList<>();
-
 }
+
