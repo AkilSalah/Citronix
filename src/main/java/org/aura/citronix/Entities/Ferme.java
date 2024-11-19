@@ -28,5 +28,4 @@ public class Ferme {
     @OneToMany(mappedBy = "ferme",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Champ> champs;
-
 }

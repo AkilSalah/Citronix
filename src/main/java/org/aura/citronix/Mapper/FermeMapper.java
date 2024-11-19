@@ -13,10 +13,11 @@ public interface FermeMapper {
 
     Ferme requestToEntity(FermeRequest request);
 
-    @Mapping(target = "champs" ,ignore = true)
+    @Mapping(target = "champs", ignore = true)
     FermeResponse toDTO(Ferme ferme);
 
     Ferme responseToEntity(FermeResponse response);
 
     List<FermeResponse> toDTOList(List<Ferme> fermes);
 }
+
