@@ -14,7 +14,7 @@ public interface ChampMapper {
     @Mapping(source = "fermeId", target = "ferme.id")
     Champ toEntity(ChampRequest champRequest);
 
-    @Mapping(target = "ferme", source = "ferme")
+    @Mapping(source = "ferme",target = "ferme")
     ChampResponse toDTO(Champ champ);
 
     List<ChampResponse> toDtoList(List<Champ> champs);

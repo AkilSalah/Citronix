@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,5 @@ public class Ferme {
     private LocalDate dateDeCreation;
 
     @OneToMany(mappedBy = "ferme",cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Champ> champs;
+    private List<Champ> champs = new ArrayList<>();
 }

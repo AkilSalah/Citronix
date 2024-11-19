@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,11 +42,24 @@ import java.util.List;
 
     @Override
     public ChampResponse addChamp(ChampRequest champRequest) {
-        fermeservice.getFermeById(champRequest.fermeId());
-        System.out.println(champRequest.fermeId());
+        FermeResponse fermeResponse = fermeservice.getFermeById(champRequest.fermeId());
+        Ferme ferme = fermeMapper.responseToEntity(fermeResponse);
+        if (ferme.getChamps() == null) {
+            ferme.setChamps(new ArrayList<>());
+        }
+        if (champRequest.champSurface()<1000){
+            throw new IllegalArgumentException("La superficie d'un champ doit être au minimum de 1000 m².");
+        }
+        if (champRequest.champSurface()>ferme.getSuperficie() * 0.5){
+            throw new IllegalArgumentException("La superficie d'un champ ne peut dépasser 50% de la superficie totale de la ferme.");
+        }
+
+        if (ferme.getChamps().size()>=10){
+            throw new IllegalArgumentException("Une ferme ne peut contenir plus de 10 champs.");
+        }
         Champ champ = champMapper.toEntity(champRequest);
+        champ.setFerme(ferme);
         Champ savedChamp = champRepo.save(champ);
-        System.out.println(savedChamp);
         return champMapper.toDTO(savedChamp);
     }
 
@@ -55,6 +69,12 @@ import java.util.List;
                 .orElseThrow(() -> new ChampException(id));
         FermeResponse fermeResponse = fermeservice.getFermeById(request.fermeId());
         Ferme ferme = fermeMapper.responseToEntity(fermeResponse);
+        if (request.champSurface() < 0.1) {
+            throw new IllegalArgumentException("La superficie d'un champ doit être au minimum de 0.1 hectare.");
+        }
+        if (request.champSurface() > ferme.getSuperficie() * 0.5) {
+            throw new IllegalArgumentException("La superficie d'un champ ne peut dépasser 50% de la superficie totale de la ferme.");
+        }
         champ.setChampName(request.champName());
         champ.setChampSurface(request.champSurface());
         champ.setFerme(ferme);
