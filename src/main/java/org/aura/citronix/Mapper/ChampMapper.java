@@ -12,7 +12,9 @@ import java.util.List;
 public interface ChampMapper {
 
     @Mapping(source = "fermeId", target = "ferme.id")
-    Champ toEntity(ChampRequest champRequest);
+    Champ requestToEntity(ChampRequest champRequest);
+
+    Champ responseToEntity(ChampResponse champResponse);
 
     @Mapping(source = "ferme",target = "ferme")
     ChampResponse toDTO(Champ champ);

@@ -57,7 +57,7 @@ import java.util.List;
         if (ferme.getChamps().size()>=10){
             throw new IllegalArgumentException("Une ferme ne peut contenir plus de 10 champs.");
         }
-        Champ champ = champMapper.toEntity(champRequest);
+        Champ champ = champMapper.requestToEntity(champRequest);
         champ.setFerme(ferme);
         Champ savedChamp = champRepo.save(champ);
         return champMapper.toDTO(savedChamp);

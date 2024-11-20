@@ -4,8 +4,8 @@ import java.util.List;
 
 public record ChampResponse(
         int id,
-        double champSurface,
         String champName,
+        String champSurface,
         FermeResponse ferme,
         List<ArbreResponse> arbres
 ) {}
