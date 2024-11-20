@@ -7,5 +7,5 @@ public record ChampResponse(
         double champSurface,
         String champName,
         FermeResponse ferme,
-        List<ArbreDto> arbres
+        List<ArbreResponse> arbres
 ) {}
