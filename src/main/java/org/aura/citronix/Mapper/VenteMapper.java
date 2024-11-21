@@ -12,5 +12,5 @@ public interface VenteMapper {
     VenteResponse toVenteResponse(Vente vente);
 
     @Mapping(target = "recolte.id" ,source = "recolteId" )
-    Vente fromVenteResponse(VenteRequest venteRequest);
+    Vente toEntity(VenteRequest venteRequest);
 }

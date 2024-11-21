@@ -11,14 +11,14 @@ public record VenteRequest (
         LocalDate dateDeVente,
 
         @Positive(message = "Le prix unitaire doit être un nombre positif.")
-        double prixUnitaire,
+        Double prixUnitaire,
 
         @NotBlank(message = "Le nom du client ne peut pas être vide.")
         @Size(max = 100, message = "Le nom du client ne doit pas dépasser 100 caractères.")
         String clientName,
 
         @Positive(message = "La quantité vendue doit être un nombre positif.")
-        double quantiteVendue,
+        Double quantiteVendue,
 
         @Positive(message = "Le Id de recolte doit être un nombre positif.")
         Integer recolteId
