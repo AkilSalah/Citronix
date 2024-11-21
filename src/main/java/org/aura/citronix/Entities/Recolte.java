@@ -23,16 +23,11 @@ public class Recolte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "La date de récolte est obligatoire.")
-    @FutureOrPresent(message = "La date de récolte doit être dans le présent ou le futur.")
-    @Column(name = "date_de_recolte")
     private LocalDate dateDeRecolte;
 
-    @Positive(message = "La quantité totale doit être un nombre positif.")
     private double quantiteTotale;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "La saison est obligatoire.")
     private Saison saison;
 
     @OneToMany(mappedBy = "recolte", cascade = CascadeType.ALL, orphanRemoval = true)

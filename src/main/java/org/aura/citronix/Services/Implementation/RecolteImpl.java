@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.aura.citronix.DTO.Request.RecolteRequest;
 import org.aura.citronix.DTO.Response.RecolteResponse;
 import org.aura.citronix.Entities.Champ;
+import org.aura.citronix.Entities.Ferme;
 import org.aura.citronix.Entities.Recolte;
 import org.aura.citronix.Exceptions.ChampException;
 import org.aura.citronix.Exceptions.RecolteException;
@@ -50,11 +51,22 @@ public class RecolteImpl implements RecolteInterface {
 
     @Override
     public RecolteResponse updateRecolte(int id, RecolteRequest recolteRequest) {
-        return null;
+        Recolte existingRecolte = recolteRepo.findById(id).orElseThrow(()-> new RecolteException(id));
+        Champ champ = champRepo.findById(recolteRequest.champId()).orElseThrow(()-> new ChampException(recolteRequest.champId()));
+
+        existingRecolte.setChamp(champ);
+        existingRecolte.setDateDeRecolte(recolteRequest.dateDeRecolte());
+        existingRecolte.setSaison(recolteRequest.saison());
+        existingRecolte.setQuantiteTotale(recolteRequest.quantiteTotale());
+        recolteRepo.save(existingRecolte);
+        return recolteMapper.toResponse(existingRecolte);
     }
 
     @Override
-    public RecolteResponse deleteRecolte(int id) {
-        return null;
+    public void deleteRecolte(int id) {
+        if(!recolteRepo.existsById(id)){
+            throw new RecolteException(id);
+        }
+        recolteRepo.deleteById(id);
     }
 }

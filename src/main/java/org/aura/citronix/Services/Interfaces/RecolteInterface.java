@@ -11,5 +11,5 @@ public interface RecolteInterface {
     RecolteResponse getRecolteById(int id);
     RecolteResponse createRecolte(RecolteRequest recolteRequest);
     RecolteResponse updateRecolte(int id, RecolteRequest recolteRequest);
-    RecolteResponse deleteRecolte(int id);
+    void deleteRecolte(int id);
 }
