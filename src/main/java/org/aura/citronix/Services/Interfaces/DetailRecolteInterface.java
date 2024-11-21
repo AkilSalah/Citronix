@@ -1,5 +1,6 @@
 package org.aura.citronix.Services.Interfaces;
 
+import org.aura.citronix.DTO.Request.RecolteDetailRequest;
 import org.aura.citronix.DTO.Response.DetailRecolteResponse;
 
 import java.util.List;
@@ -7,6 +8,6 @@ import java.util.List;
 public interface DetailRecolteInterface {
 
     DetailRecolteResponse getDetailRecolte(int id);
-    List<DetailRecolteResponse> getAllDetailRecolte();
-    DetailRecolteResponse addDetailRecolte(DetailRecolteResponse detailRecolte);
+    List<DetailRecolteResponse> getAllDetailRecolteByRecolte(int recoltId);
+    DetailRecolteResponse addDetailRecolte(RecolteDetailRequest recolteDetailRequest);
 }

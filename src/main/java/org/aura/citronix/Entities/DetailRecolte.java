@@ -23,7 +23,6 @@ public class DetailRecolte {
     @JoinColumn(name = "arbre_id", nullable = false)
     private Arbre arbre;
 
-    @Positive(message = "La quantité doit être un nombre positif.")
     private double quantite;
 }
 
