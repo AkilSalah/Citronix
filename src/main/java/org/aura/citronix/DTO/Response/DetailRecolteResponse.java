@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DetailRecolteDto {
+public class DetailRecolteResponse {
     private int id;
     private int arbreId;
     private int recolteId;

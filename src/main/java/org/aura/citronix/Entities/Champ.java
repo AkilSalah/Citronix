@@ -1,7 +1,6 @@
 package org.aura.citronix.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.*;
@@ -31,5 +30,8 @@ public class Champ {
 
     @OneToMany(mappedBy = "champ", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Arbre> arbres = new ArrayList<>();
+
+    @OneToMany(mappedBy = "champ",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Recolte> recoltes  = new ArrayList<>();
 }
 

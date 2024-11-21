@@ -1,5 +1,6 @@
 package org.aura.citronix.Services.Implementation;
 
+import lombok.RequiredArgsConstructor;
 import org.aura.citronix.DTO.Request.FermeRequest;
 import org.aura.citronix.DTO.Response.FermeResponse;
 import org.aura.citronix.Entities.Ferme;
@@ -14,15 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 @Service
 @Transactional
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class FermeImpl implements FermeInterface {
     private final FermeMapper fermeMapper;
     private final FermeRepo fermeRepo;
-
-    @Autowired
-    public FermeImpl(FermeRepo fermeRepo, FermeMapper fermeMapper) {
-        this.fermeRepo = fermeRepo;
-        this.fermeMapper = fermeMapper;
-    }
 
     @Override
     public List<FermeResponse> getFermeList() {

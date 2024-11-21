@@ -18,9 +18,16 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,Object>> handleFermeException(FermeException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
-
     @ExceptionHandler(ChampException.class)
     public ResponseEntity<Map<String,Object>> handleChampException(ChampException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(ArbreException.class)
+    public ResponseEntity<Map<String,Object>> handleArbreException(ArbreException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(RecolteException.class)
+    public ResponseEntity<Map<String,Object>> handleRecolteException(RecolteException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 

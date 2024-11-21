@@ -37,5 +37,10 @@ public class Recolte {
 
     @OneToMany(mappedBy = "recolte", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetailRecolte> details = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "champ_id",nullable = false)
+    private Champ champ;
+
 }
 

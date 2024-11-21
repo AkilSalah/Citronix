@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class VenteDto {
+public class VenteResponse {
     private Integer id;
     private LocalDate dateDeVente;
     private double prixUnitaire;
