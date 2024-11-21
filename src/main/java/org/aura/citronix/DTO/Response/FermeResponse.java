@@ -16,5 +16,5 @@ public class FermeResponse {
     private String localisation;
     private double superficie;
     private LocalDate dateDeCreation;
-    private List<ChampResponse> champs;
+//    private List<ChampResponse> champs;
 }

@@ -36,6 +36,7 @@ public class ArbreImpl implements ArbreInterface {
     public ArbreResponse getArbresById(int id) {
         Arbre arbre = arbreRepo.findById(id)
                 .orElseThrow(() -> new ArbreException(id));
+         arbre.setChamp(arbre.getChamp());
         return arbreMapper.toResponse(arbre);
     }
 
@@ -68,8 +69,9 @@ public class ArbreImpl implements ArbreInterface {
             throw new IllegalArgumentException("L'arbre ne peut pas être productif au-delà de 20 ans.");
         }
 
-        arbreRepo.save(arbre);
-        return arbreMapper.toResponse(arbre);
+        Arbre saveArbre= arbreRepo.save(arbre);
+
+        return arbreMapper.toResponse(saveArbre);
     }
 
     @Override
@@ -101,7 +103,6 @@ public class ArbreImpl implements ArbreInterface {
         arbreRepo.save(arbre);
         return arbreMapper.toResponse(arbre);
     }
-
 
     @Override
     public void deleteArbre(int id) {

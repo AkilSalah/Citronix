@@ -1,5 +1,6 @@
 package org.aura.citronix.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,5 +28,6 @@ public class Ferme {
     private LocalDate dateDeCreation;
 
     @OneToMany(mappedBy = "ferme",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Champ> champs = new ArrayList<>();
 }

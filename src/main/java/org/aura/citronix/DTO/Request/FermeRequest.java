@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class FermeRequest {
     @NotBlank(message = "Le nom de la ferme ne peut pas être vide")
     @Size(max = 100, message = "Le nom de la ferme ne doit pas dépasser 100 caractères")

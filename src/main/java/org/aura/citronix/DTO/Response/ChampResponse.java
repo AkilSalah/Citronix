@@ -5,7 +5,9 @@ import java.util.List;
 public record ChampResponse(
         int id,
         String champName,
-        String champSurface,
+        double champSurface,
         FermeResponse ferme,
         List<ArbreResponse> arbres
 ) {}
+
+
