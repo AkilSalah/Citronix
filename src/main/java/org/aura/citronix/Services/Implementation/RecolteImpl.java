@@ -57,7 +57,10 @@ public class RecolteImpl implements RecolteInterface {
     public RecolteResponse updateRecolte(int id, RecolteRequest recolteRequest) {
         Recolte existingRecolte = recolteRepo.findById(id).orElseThrow(()-> new RecolteException(id));
         Champ champ = champRepo.findById(recolteRequest.champId()).orElseThrow(()-> new ChampException(recolteRequest.champId()));
-
+        boolean recolteExist = recolteRepo.existingRecolteByChampAndSaison(recolteRequest.champId(),recolteRequest.saison());
+        if(recolteExist) {
+            throw new IllegalArgumentException("Ce champ a déjà une récolte pour la saison " + recolteRequest.saison());
+        }
         existingRecolte.setChamp(champ);
         existingRecolte.setDateDeRecolte(recolteRequest.dateDeRecolte());
         existingRecolte.setSaison(recolteRequest.saison());
