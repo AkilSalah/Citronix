@@ -16,5 +16,4 @@ public class VenteResponse {
     private String clientName;
     private double revenu;
     private double quantiteVendue;
-    private int recolteId;
 }

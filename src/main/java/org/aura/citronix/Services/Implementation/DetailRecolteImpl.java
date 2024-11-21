@@ -38,15 +38,14 @@ public class DetailRecolteImpl implements DetailRecolteInterface {
     }
 
     @Override
-    public List<DetailRecolteResponse> getAllDetailRecolteByRecolte(int recolteId) {
-        recolteRepo.findById(recolteId).orElseThrow(()-> new RecolteException(recolteId));
-        List<DetailRecolte> details  = detailRepo.findByRecolteId(recolteId);
+    public List<DetailRecolteResponse> getAllDetailRecolteByRecolte(int id) {
+        recolteRepo.findById(id).orElseThrow(()-> new RecolteException(id));
+        List<DetailRecolte> details  = detailRepo.findByRecolteId(id);
         return  details.stream().map(detailMapper::toResponse).toList();
     }
 
     @Override
     public DetailRecolteResponse addDetailRecolte(RecolteDetailRequest recolteDetailRequest) {
-        System.out.println(recolteDetailRequest);
         Recolte recolte = recolteRepo.findById(recolteDetailRequest.recolteId()).orElseThrow(() -> new RecolteException(recolteDetailRequest.recolteId()));
         Arbre arbre = arbreRepo.findById(recolteDetailRequest.arbreId()).orElseThrow(()-> new ArbreException(recolteDetailRequest.arbreId()));
         if (Boolean.TRUE.equals(detailRepo.findExistDetailByArbreIdAndSaison(arbre.getId(),recolte.getSaison()))){

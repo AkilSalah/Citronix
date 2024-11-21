@@ -23,11 +23,12 @@ public class DetailRecolteController {
 
     private final DetailRecolteInterface detailRecolteService;
 
-    @GetMapping("/recolteId")
-    public ResponseEntity<List<DetailRecolteResponse>> getAllDetailRecolteId(@PathVariable int RecolteId) {
-        List<DetailRecolteResponse> detailForRecolte = detailRecolteService.getAllDetailRecolteByRecolte(RecolteId);
+    @GetMapping("/recolte/{id}")
+    public ResponseEntity<List<DetailRecolteResponse>> getAllDetailRecolteId(@PathVariable int id) {
+        List<DetailRecolteResponse> detailForRecolte = detailRecolteService.getAllDetailRecolteByRecolte(id);
         return ResponseEntity.ok(detailForRecolte);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<DetailRecolteResponse> getDetailRecolteById(@PathVariable int id) {
         DetailRecolteResponse detailRecolte = detailRecolteService.getDetailRecolte(id);

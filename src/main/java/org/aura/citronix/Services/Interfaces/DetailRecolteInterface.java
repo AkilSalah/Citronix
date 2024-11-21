@@ -8,6 +8,6 @@ import java.util.List;
 public interface DetailRecolteInterface {
 
     DetailRecolteResponse getDetailRecolte(int id);
-    List<DetailRecolteResponse> getAllDetailRecolteByRecolte(int recoltId);
+    List<DetailRecolteResponse> getAllDetailRecolteByRecolte(int id);
     DetailRecolteResponse addDetailRecolte(RecolteDetailRequest recolteDetailRequest);
 }

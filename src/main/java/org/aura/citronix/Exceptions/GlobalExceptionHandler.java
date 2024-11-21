@@ -34,7 +34,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,Object>> handleDetailRecolteException(DetailRecolteException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
-
+    @ExceptionHandler(VenteException.class)
+    public ResponseEntity<Map<String,Object>> handleVenteException(VenteException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationExceptions(MethodArgumentNotValidException ex) {

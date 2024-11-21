@@ -37,5 +37,8 @@ public class Recolte {
     @JoinColumn(name = "champ_id",nullable = false)
     private Champ champ;
 
+    @OneToMany(mappedBy = "recolte",cascade = CascadeType.ALL,orphanRemoval = true)
+    private  List<Vente> ventes = new ArrayList<>();
+
 }
 
