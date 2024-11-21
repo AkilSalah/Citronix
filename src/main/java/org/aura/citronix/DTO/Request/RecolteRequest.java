@@ -16,6 +16,7 @@ public record RecolteRequest (
         double quantiteTotale,
 
         @NotNull(message = "La saison est obligatoire.")
+        @Enumerated(EnumType.STRING)
         Saison saison,
 
         @Positive(message = "Id de champ doit etre positive ")
