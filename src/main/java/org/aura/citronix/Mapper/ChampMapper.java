@@ -14,8 +14,10 @@ public interface ChampMapper {
 
     @Mapping(source = "fermeId", target = "ferme.id")
     Champ requestToEntity(ChampRequest champRequest);
-    @Mapping(target = "arbres", source = "arbres")
-    ChampMinimalResponse toMinimalResponse(Champ champ);
+
+//    @Mapping(target = "arbres", source = "arbres")
+//    ChampMinimalResponse toMinimalResponse(Champ champ);
+
     Champ responseToEntity(ChampResponse champResponse);
 
     @Mapping(source = "ferme",target = "ferme")

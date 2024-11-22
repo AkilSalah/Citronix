@@ -6,8 +6,8 @@ public record ChampResponse(
         int id,
         String champName,
         double champSurface,
-        FermeResponse ferme,
-        List<ArbreResponse> arbres
+        FermeMinimalResponse ferme,
+        List<ArbreMinimalResponse> arbres
 ) {}
 
 
