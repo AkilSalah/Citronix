@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.aura.citronix.DTO.Request.VenteRequest;
 import org.aura.citronix.DTO.Response.VenteResponse;
 import org.aura.citronix.Services.Interfaces.VenteInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Validated
 @RequestMapping("/api/ventes")
 public class VenteController {
