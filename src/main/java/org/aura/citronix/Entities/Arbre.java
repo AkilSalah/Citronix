@@ -23,15 +23,12 @@ public class Arbre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "La date de plantation est obligatoire.")
-    @PastOrPresent(message = "La date de plantation doit être dans le présent ou le passe.")
     @Column(name = "date_de_plantation")
     private LocalDate dateDePlantation;
 
     @Transient
     private int age;
 
-    @Positive(message = "La productivité annuelle doit être un nombre positif.")
     private double productiviteAnnuelle;
 
     @OneToMany(mappedBy = "arbre", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -40,6 +37,13 @@ public class Arbre {
     @ManyToOne
     @JoinColumn(name = "champ_id", nullable = false)
     private Champ champ;
+
+    public int getAge() {
+        if (dateDePlantation == null) {
+            return 0;
+        }
+        return Period.between(dateDePlantation, LocalDate.now()).getYears();
+    }
 
 }
 

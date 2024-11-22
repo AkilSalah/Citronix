@@ -2,6 +2,7 @@ package org.aura.citronix.Mapper;
 
 
 import org.aura.citronix.DTO.Request.ArbreRequest;
+import org.aura.citronix.DTO.Response.ArbreMinimalResponse;
 import org.aura.citronix.DTO.Response.ArbreResponse;
 import org.aura.citronix.Entities.Arbre;
 import org.mapstruct.Mapper;
@@ -11,18 +12,14 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
-@Mapper(componentModel = "spring" , uses = {ChampMapper.class})
+@Mapper(componentModel = "spring" )
 public interface ArbreMapper {
 
-    @Mapping(target = "age", expression = "java(calculateAge(arbre.getDateDePlantation()))")
-    ArbreResponse toResponse(Arbre arbre);
+    @Mapping(target = "age", source = "age")
+    ArbreMinimalResponse toMinimalResponse(Arbre arbre);
 
-    default int calculateAge(LocalDate dateDePlantation) {
-        if (dateDePlantation == null) {
-            return 0;
-        }
-        return Period.between(dateDePlantation, LocalDate.now()).getYears();
-    }
+    @Mapping(target = "age", source = "age")
+    ArbreResponse toResponse(Arbre arbre);
 
     @Mapping(target = "champ.id", source = "champId")
     Arbre requestToEntity(ArbreRequest arbreRequest);

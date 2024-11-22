@@ -13,6 +13,7 @@ public interface FermeMapper {
 
     Ferme requestToEntity(FermeRequest request);
 
+    @Mapping(target = "champs", source = "champs")
     FermeResponse toDTO(Ferme ferme);
 
     Ferme responseToEntity(FermeResponse response);
