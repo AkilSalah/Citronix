@@ -7,7 +7,6 @@ import org.aura.citronix.DTO.Request.RecolteDetailRequest;
 import org.aura.citronix.DTO.Response.DetailRecolteResponse;
 import org.aura.citronix.Services.Interfaces.DetailRecolteInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -34,11 +33,11 @@ public class DetailRecolteController {
         DetailRecolteResponse detailRecolte = detailRecolteService.getDetailRecolte(id);
         return ResponseEntity.ok(detailRecolte);
     }
-//    @PostMapping
-//    public ResponseEntity<DetailRecolteResponse> addDetailRecolte(@RequestBody @Valid  RecolteDetailRequest recolteDetailRequest){
-//        DetailRecolteResponse detailRecolte = detailRecolteService.addDetailRecolte(recolteDetailRequest);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(detailRecolte);
-//    }
+    @PostMapping
+    public ResponseEntity<DetailRecolteResponse> addDetailRecolte(@RequestBody @Valid  RecolteDetailRequest recolteDetailRequest){
+        DetailRecolteResponse detailRecolte = detailRecolteService.addDetailRecolte(recolteDetailRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(detailRecolte);
+    }
 
 
 }

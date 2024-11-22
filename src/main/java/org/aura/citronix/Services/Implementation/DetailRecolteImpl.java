@@ -44,21 +44,23 @@ public class DetailRecolteImpl implements DetailRecolteInterface  {
         return  details.stream().map(detailMapper::toResponse).toList();
     }
 
-//    @Override
-//    public DetailRecolteResponse addDetailRecolte(RecolteDetailRequest recolteDetailRequest) {
-//        Recolte recolte = recolteRepo.findById(recolteDetailRequest.recolteId()).orElseThrow(() -> new RecolteException(recolteDetailRequest.recolteId()));
-//        Arbre arbre = arbreRepo.findById(recolteDetailRequest.arbreId()).orElseThrow(()-> new ArbreException(recolteDetailRequest.arbreId()));
-//        if (Boolean.TRUE.equals(detailRepo.findExistDetailByArbreIdAndSaison(arbre.getId(),recolte.getSaison()))){
-//            throw new IllegalArgumentException("Cet arbre a déjà été récolté dans cette saison !");
-//        }
-//        DetailRecolte detailRecolte = DetailRecolte.builder().
-//                recolte(recolte)
-//                .quantite(recolteDetailRequest.quantite())
-//                .arbre(arbre).
-//                build();
-//        detailRepo.save(detailRecolte);
-//        recolte.setQuantiteTotale(recolte.getQuantiteTotale() + recolteDetailRequest.quantite());
-//        detailRepo.save(detailRecolte);
-//        return detailMapper.toResponse(detailRecolte);
-//    }
+    @Override
+    public DetailRecolteResponse addDetailRecolte(RecolteDetailRequest recolteDetailRequest) {
+        Recolte recolte = recolteRepo.findById(recolteDetailRequest.recolteId()).orElseThrow(() -> new RecolteException(recolteDetailRequest.recolteId()));
+        Arbre arbre = arbreRepo.findById(recolteDetailRequest.arbreId()).orElseThrow(()-> new ArbreException(recolteDetailRequest.arbreId()));
+        if (Boolean.TRUE.equals(detailRepo.findExistDetailByArbreIdAndSaison(arbre.getId(),recolte.getSaison()))){
+            throw new IllegalArgumentException("Cet arbre a déjà été récolté dans cette saison !");
+        }
+
+        DetailRecolte detailRecolte = DetailRecolte.builder().
+                 recolte(recolte)
+                .quantite(recolteDetailRequest.quantite())
+                .arbre(arbre)
+                .build();
+
+        detailRepo.save(detailRecolte);
+        recolte.setQuantiteTotale(recolte.getQuantiteTotale() + recolteDetailRequest.quantite());
+        detailRepo.save(detailRecolte);
+        return detailMapper.toResponse(detailRecolte);
+    }
 }

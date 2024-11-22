@@ -13,8 +13,6 @@ public record RecolteRequest (
         @Column(name = "date_de_recolte")
         LocalDate dateDeRecolte,
 
-        double quantiteTotale,
-
         @NotNull(message = "La saison est obligatoire.")
         @Enumerated(EnumType.STRING)
         Saison saison,

@@ -9,5 +9,5 @@ public interface DetailRecolteInterface {
 
     DetailRecolteResponse getDetailRecolte(int id);
     List<DetailRecolteResponse> getAllDetailRecolteByRecolte(int id);
-//    DetailRecolteResponse addDetailRecolte(RecolteDetailRequest recolteDetailRequest);
+    DetailRecolteResponse addDetailRecolte(RecolteDetailRequest recolteDetailRequest);
 }

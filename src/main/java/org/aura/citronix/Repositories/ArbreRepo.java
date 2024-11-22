@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface ArbreRepo extends JpaRepository<Arbre, Integer> {
-    List<Arbre> findAllByChampId(int id);
 }
