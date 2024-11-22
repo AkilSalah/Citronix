@@ -51,6 +51,7 @@ public class VenteImpl implements VenteInterface {
         }
 
         Vente vente = venteMapper.toEntity(venteRequest);
+        vente.setRecolte(recolte);
         venteRepo.save(vente);
 
         recolte.setQuantiteTotale(recolte.getQuantiteTotale() - venteRequest.quantiteVendue());
@@ -83,6 +84,7 @@ public class VenteImpl implements VenteInterface {
         vente.setQuantiteVendue(nouvelleQuantiteVendue);
         vente.setPrixUnitaire(venteRequest.prixUnitaire());
         vente.setRevenu(nouvelleQuantiteVendue * venteRequest.prixUnitaire());
+        vente.setClientName(venteRequest.clientName());
         recolteRepo.save(recolte);
         venteRepo.save(vente);
         return venteMapper.toVenteResponse(vente);

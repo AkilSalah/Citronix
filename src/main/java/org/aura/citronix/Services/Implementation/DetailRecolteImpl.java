@@ -51,14 +51,15 @@ public class DetailRecolteImpl implements DetailRecolteInterface {
         if (Boolean.TRUE.equals(detailRepo.findExistDetailByArbreIdAndSaison(arbre.getId(),recolte.getSaison()))){
             throw new IllegalArgumentException("Cet arbre a déjà été récolté dans cette saison !");
         }
-        DetailRecolte detailRecolteSaved = DetailRecolte.builder().
+        DetailRecolte detailRecolte = DetailRecolte.builder().
                 recolte(recolte)
                 .arbre(arbre).
-                quantite(recolteDetailRequest.quantite()).
                 build();
-        detailRepo.save(detailRecolteSaved);
-        recolte.setQuantiteTotale(recolte.getQuantiteTotale() + recolteDetailRequest.quantite());
-        detailRepo.save(detailRecolteSaved);
-        return detailMapper.toResponse(detailRecolteSaved);
+        detailRepo.save(detailRecolte);
+        recolte.setQuantiteTotale(recolte.getQuantiteTotale() + detailRecolte.getQuantite());
+        detailRepo.save(detailRecolte);
+        DetailRecolteResponse detailRecolteResponse = detailMapper.toResponse(detailRecolte);
+        detailRecolteResponse.setQuantite(detailRecolte.getQuantite());
+        return detailRecolteResponse;
     }
 }

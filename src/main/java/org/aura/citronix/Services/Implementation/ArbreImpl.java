@@ -60,11 +60,11 @@ public class ArbreImpl implements ArbreInterface {
 
         int age = arbre.getAge();
         if (age < 3) {
-            arbre.setProductiviteAnnuelle(2.5);
+            arbre.setProductiviteAnnuelle(2.5*4);
         } else if (age <= 10) {
-            arbre.setProductiviteAnnuelle(12.0);
+            arbre.setProductiviteAnnuelle(12.0*4);
         } else if (age <= 20) {
-            arbre.setProductiviteAnnuelle(20.0);
+            arbre.setProductiviteAnnuelle(20.0*4);
         } else {
             throw new IllegalArgumentException("L'arbre ne peut pas être productif au-delà de 20 ans.");
         }

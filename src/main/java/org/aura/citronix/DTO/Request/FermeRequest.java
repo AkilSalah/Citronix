@@ -24,6 +24,6 @@ public class FermeRequest {
     private Double superficie;
 
     @NotNull(message = "La date de création est obligatoire")
-    @FutureOrPresent(message = "La date de création doit être dans le présent ou le futur")
+    @PastOrPresent(message = "La date de création doit être dans le présent ou le passe")
     private LocalDate dateDeCreation;
 }

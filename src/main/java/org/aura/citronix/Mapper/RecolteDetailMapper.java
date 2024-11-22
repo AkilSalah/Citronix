@@ -21,7 +21,5 @@ public interface RecolteDetailMapper {
     @Mapping(target = "dateDeRecolte",source = "recolte.dateDeRecolte")
     @Mapping(target = "saison",source = "recolte.saison")
     DetailRecolteResponse toResponse(DetailRecolte detailRecolte);
-
     DetailRecolte toEntity(RecolteRequest recolteRequest);
-
 }

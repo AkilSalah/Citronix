@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper(componentModel = "spring",uses = {RecolteDetailMapper.class})
 public interface RecolteMapper {
     @Mapping(target ="champ",source = "champ")
+    @Mapping(target ="champ.arbres",ignore = true)
     @Mapping(target = "detailsRecolte" , source = "details")
     RecolteResponse toResponse(Recolte recolte);
 

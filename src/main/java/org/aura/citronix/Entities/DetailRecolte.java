@@ -23,6 +23,18 @@ public class DetailRecolte {
     @JoinColumn(name = "arbre_id", nullable = false)
     private Arbre arbre;
 
+    @Transient
     private double quantite;
+
+    public double getQuantite() {
+        if (arbre.getAge() < 3) {
+           return quantite = 2.5;
+        } else if (arbre.getAge() <= 10) {
+            return quantite = 12.0;
+        } else if (arbre.getAge() <= 20) {
+           return quantite = 20.0;
+        }
+        return 0;
+    }
 }
 
