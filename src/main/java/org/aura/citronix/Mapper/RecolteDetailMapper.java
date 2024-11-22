@@ -14,7 +14,12 @@ import java.util.List;
 public interface RecolteDetailMapper {
 
     @Mapping(target ="arbreId",source = "arbre.id" )
+    @Mapping(target = "dateDePlantation",source = "arbre.dateDePlantation")
+    @Mapping(target = "age" ,source = "arbre.age")
+    @Mapping(target = "productiviteAnnuelle",source = "arbre.productiviteAnnuelle")
     @Mapping(target = "recolteId",source = "recolte.id")
+    @Mapping(target = "dateDeRecolte",source = "recolte.dateDeRecolte")
+    @Mapping(target = "saison",source = "recolte.saison")
     DetailRecolteResponse toResponse(DetailRecolte detailRecolte);
 
     DetailRecolte toEntity(RecolteRequest recolteRequest);

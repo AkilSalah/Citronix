@@ -10,5 +10,6 @@ public record RecolteResponse(
          LocalDate dateDeRecolte,
          double quantiteTotale,
          Saison saison,
-         List<DetailRecolteResponse>detailsRecolte
+         List<DetailRecolteResponse>detailsRecolte,
+         ChampMinimalResponse champ
 ){}

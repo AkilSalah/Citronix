@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface VenteMapper {
 
+    @Mapping(target = "recolteVente",source = "recolte" )
     VenteResponse toVenteResponse(Vente vente);
 
     @Mapping(target = "recolte.id" ,source = "recolteId" )
