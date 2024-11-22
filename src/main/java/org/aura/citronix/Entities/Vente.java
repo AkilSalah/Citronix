@@ -32,4 +32,8 @@ public class Vente {
     @ManyToOne
     @JoinColumn(name = "recolte_id", nullable = false)
     private Recolte recolte;
+
+    public double getRevenu() {
+        return quantiteVendue * prixUnitaire;
+    }
 }

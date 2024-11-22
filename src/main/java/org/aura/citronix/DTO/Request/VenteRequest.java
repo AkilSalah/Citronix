@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public record VenteRequest (
         @NotNull(message = "La date de vente ne peut pas être nulle.")
-        @FutureOrPresent(message = "La date de vente doit être dans le future ou le présent.")
+        @PastOrPresent(message = "La date de vente doit être dans le passe ou le présent.")
         LocalDate dateDeVente,
 
         @Positive(message = "Le prix unitaire doit être un nombre positif.")

@@ -52,7 +52,6 @@ public class VenteImpl implements VenteInterface {
         }
 
         Vente vente = venteMapper.toEntity(venteRequest);
-        vente.setRevenu(venteRequest.quantiteVendue() * venteRequest.prixUnitaire());
         venteRepo.save(vente);
 
         recolte.setQuantiteTotale(recolte.getQuantiteTotale() - venteRequest.quantiteVendue());
@@ -61,12 +60,34 @@ public class VenteImpl implements VenteInterface {
         return venteMapper.toVenteResponse(vente);
     }
 
-
     @Override
     public VenteResponse updateVente(int id, VenteRequest venteRequest) {
-        return null;
-    }
+        Vente vente = venteRepo.findById(id)
+                .orElseThrow(() -> new VenteException(id));
+        Recolte recolte = recolteRepo.findById(venteRequest.recolteId())
+                .orElseThrow(() -> new RecolteException(venteRequest.recolteId()));
 
+        double ancienneQuantiteVendue = vente.getQuantiteVendue();
+        double nouvelleQuantiteVendue = venteRequest.quantiteVendue();
+
+        if (nouvelleQuantiteVendue < ancienneQuantiteVendue) {
+            double quantiteARetourner = ancienneQuantiteVendue - nouvelleQuantiteVendue;
+            recolte.setQuantiteTotale(recolte.getQuantiteTotale() + quantiteARetourner);
+        } else {
+            double quantiteSup = nouvelleQuantiteVendue - ancienneQuantiteVendue;
+            if (quantiteSup > recolte.getQuantiteTotale()) {
+                throw new IllegalArgumentException("Stock insuffisant");
+            }
+            recolte.setQuantiteTotale(recolte.getQuantiteTotale() - quantiteSup);
+        }
+
+        vente.setQuantiteVendue(nouvelleQuantiteVendue);
+        vente.setPrixUnitaire(venteRequest.prixUnitaire());
+        vente.setRevenu(nouvelleQuantiteVendue * venteRequest.prixUnitaire());
+        recolteRepo.save(recolte);
+        venteRepo.save(vente);
+        return venteMapper.toVenteResponse(vente);
+    }
     @Override
     public void deleteVente(int id) {
         if (!venteRepo.existsById(id)) {
