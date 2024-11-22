@@ -21,7 +21,5 @@ public record RecolteRequest (
 
         @Positive(message = "Id de champ doit etre positive ")
         Integer champId
-
 )
-
-        {}
+{}

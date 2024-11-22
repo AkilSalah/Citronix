@@ -34,11 +34,11 @@ public class DetailRecolteController {
         DetailRecolteResponse detailRecolte = detailRecolteService.getDetailRecolte(id);
         return ResponseEntity.ok(detailRecolte);
     }
-    @PostMapping
-    public ResponseEntity<DetailRecolteResponse> addDetailRecolte(@RequestBody @Valid  RecolteDetailRequest recolteDetailRequest){
-        DetailRecolteResponse detailRecolte = detailRecolteService.addDetailRecolte(recolteDetailRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(detailRecolte);
-    }
+//    @PostMapping
+//    public ResponseEntity<DetailRecolteResponse> addDetailRecolte(@RequestBody @Valid  RecolteDetailRequest recolteDetailRequest){
+//        DetailRecolteResponse detailRecolte = detailRecolteService.addDetailRecolte(recolteDetailRequest);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(detailRecolte);
+//    }
 
 
 }
