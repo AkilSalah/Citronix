@@ -59,5 +59,9 @@ public class FermeImpl implements FermeInterface {
         fermeRepo.delete(ferme);
     }
 
+    @Override
+    public List<Ferme> searchFermes(String name, String localisation, Double superficieMin, Double superficieMax) {
+        return fermeRepo.searchFermes(name, localisation, superficieMin, superficieMax);
+    }
 
 }

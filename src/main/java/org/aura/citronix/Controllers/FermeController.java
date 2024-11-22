@@ -4,6 +4,7 @@ package org.aura.citronix.Controllers;
 import jakarta.validation.Valid;
 import org.aura.citronix.DTO.Request.FermeRequest;
 import org.aura.citronix.DTO.Response.FermeResponse;
+import org.aura.citronix.Entities.Ferme;
 import org.aura.citronix.Services.Interfaces.FermeInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,5 +51,16 @@ public class FermeController {
     public ResponseEntity<Void> deleteFerme(@PathVariable int id) {
         fermeService.deleteFerme(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Ferme>> searchFerme(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String localisation,
+            @RequestParam(required = false) Double superficieMin,
+            @RequestParam(required = false) Double superficieMax
+    ) {
+        List<Ferme> responseList = fermeService.searchFermes(name, localisation, superficieMin, superficieMax);
+        return ResponseEntity.ok(responseList);
     }
 }
