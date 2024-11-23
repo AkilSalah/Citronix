@@ -45,10 +45,10 @@ public class FermeImpl implements FermeInterface {
     @Override
     public FermeResponse updateFerme(FermeRequest fermeRequest, int id) {
         Ferme existingFerme = fermeRepo.findById(id).orElseThrow(()-> new FermeException(id));
-        existingFerme.setName(fermeRequest.getName());
-        existingFerme.setLocalisation(fermeRequest.getLocalisation());
-        existingFerme.setDateDeCreation(fermeRequest.getDateDeCreation());
-        existingFerme.setSuperficie(fermeRequest.getSuperficie());
+        existingFerme.setName(fermeRequest.name());
+        existingFerme.setLocalisation(fermeRequest.localisation());
+        existingFerme.setDateDeCreation(fermeRequest.dateDeCreation());
+        existingFerme.setSuperficie(fermeRequest.superficie());
         Ferme fermeSaved = fermeRepo.save(existingFerme);
         return fermeMapper.toDTO(fermeSaved);
     }
