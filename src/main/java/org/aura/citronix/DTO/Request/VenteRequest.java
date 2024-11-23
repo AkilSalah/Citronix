@@ -1,6 +1,5 @@
 package org.aura.citronix.DTO.Request;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
