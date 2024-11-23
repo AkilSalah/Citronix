@@ -4,7 +4,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 
+@Builder
 public record ChampRequest(
         @Positive(message = "La surface du champ doit être positive")
         @Min(value = 1000, message = "La superficie d'un champ doit être au minimum de 1000 m².")

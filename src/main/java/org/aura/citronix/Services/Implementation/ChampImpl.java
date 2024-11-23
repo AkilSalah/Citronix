@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @Transactional
- class ChampImpl implements ChampInterface {
+ public class ChampImpl implements ChampInterface {
     private final ChampRepo champRepo;
     private final ChampMapper champMapper;
     private final FermeInterface fermeservice;
