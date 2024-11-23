@@ -11,27 +11,22 @@ import java.time.LocalDate;
 import java.time.LocalDate;
 
 
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class ArbreResponse {
-    int id;
-    LocalDate dateDePlantation;
-    int age;
-    double productiviteAnnuelle;
-    ChampR champ;
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class ChampR {
-        int id;
-        String champName;
-        double champSurface;
+public record ArbreResponse(
+        int id,
+        LocalDate dateDePlantation,
+        int age,
+        double productiviteAnnuelle,
+        ChampR champ
+) {
+    public record ChampR(
+            int id,
+            String champName,
+            double champSurface
+    ) {
     }
 }
+
 
 
 

@@ -5,10 +5,11 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
+import lombok.Builder;
 
 import java.time.LocalDate;
 
-
+@Builder
 public record ArbreRequest (
 
         @NotNull(message = "La date de plantation est obligatoire.")
