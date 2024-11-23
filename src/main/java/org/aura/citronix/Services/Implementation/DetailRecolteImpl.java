@@ -63,4 +63,31 @@ public class DetailRecolteImpl implements DetailRecolteInterface  {
         detailRepo.save(detailRecolte);
         return detailMapper.toResponse(detailRecolte);
     }
+    @Override
+    public DetailRecolteResponse updateDetailRecolte(int id, RecolteDetailRequest recolteDetailRequest) {
+        DetailRecolte detailRecolte = detailRepo.findById(id)
+                .orElseThrow(() -> new DetailRecolteException(id));
+
+        if (recolteDetailRequest.quantite() != null) {
+            double ancienneQuantite = detailRecolte.getQuantite();
+            double nouvelleQuantite = recolteDetailRequest.quantite();
+            detailRecolte.getRecolte().setQuantiteTotale(
+                    detailRecolte.getRecolte().getQuantiteTotale() - ancienneQuantite + nouvelleQuantite
+            );
+            detailRecolte.setQuantite(nouvelleQuantite);
+        }
+        detailRepo.save(detailRecolte);
+
+        return detailMapper.toResponse(detailRecolte);
+    }
+
+    @Override
+    public void deleteDetailRecolte(int id) {
+        DetailRecolte detailRecolte = detailRepo.findById(id)
+                .orElseThrow(() -> new DetailRecolteException(id));
+        Recolte recolte = detailRecolte.getRecolte();
+        recolte.setQuantiteTotale(recolte.getQuantiteTotale() - detailRecolte.getQuantite());
+        detailRepo.delete(detailRecolte);
+    }
+
 }

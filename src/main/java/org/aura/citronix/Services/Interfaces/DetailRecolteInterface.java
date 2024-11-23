@@ -10,4 +10,6 @@ public interface DetailRecolteInterface {
     DetailRecolteResponse getDetailRecolte(int id);
     List<DetailRecolteResponse> getAllDetailRecolteByRecolte(int id);
     DetailRecolteResponse addDetailRecolte(RecolteDetailRequest recolteDetailRequest);
+    DetailRecolteResponse updateDetailRecolte(int id, RecolteDetailRequest recolteDetailRequest);
+    void deleteDetailRecolte(int id);
 }

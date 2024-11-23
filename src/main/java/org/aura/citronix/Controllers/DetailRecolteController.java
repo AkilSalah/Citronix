@@ -13,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Validated
@@ -33,11 +32,25 @@ public class DetailRecolteController {
         DetailRecolteResponse detailRecolte = detailRecolteService.getDetailRecolte(id);
         return ResponseEntity.ok(detailRecolte);
     }
+
     @PostMapping
-    public ResponseEntity<DetailRecolteResponse> addDetailRecolte(@RequestBody @Valid  RecolteDetailRequest recolteDetailRequest){
+    public ResponseEntity<DetailRecolteResponse> addDetailRecolte(@RequestBody @Valid RecolteDetailRequest recolteDetailRequest) {
         DetailRecolteResponse detailRecolte = detailRecolteService.addDetailRecolte(recolteDetailRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(detailRecolte);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<DetailRecolteResponse> updateDetailRecolte(
+            @PathVariable int id,
+            @RequestBody @Valid RecolteDetailRequest recolteDetailRequest) {
+        DetailRecolteResponse updatedDetail = detailRecolteService.updateDetailRecolte(id, recolteDetailRequest);
+        return ResponseEntity.ok(updatedDetail);
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDetailRecolte(@PathVariable int id) {
+        detailRecolteService.deleteDetailRecolte(id);
+        return ResponseEntity.noContent().build();
+    }
 }
+
