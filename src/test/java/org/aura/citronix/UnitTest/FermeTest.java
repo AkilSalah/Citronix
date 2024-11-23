@@ -78,7 +78,7 @@ public class FermeTest {
 
         assertNotNull(actualResponses);
         assertEquals(1, actualResponses.size());
-        assertEquals(fermeResponse.getName(), actualResponses.get(0).getName());
+        assertEquals(fermeResponse.name(), actualResponses.get(0).name());
         verify(fermeRepo).findAll();
         verify(fermeMapper).toDTOList(fermes);
     }
@@ -91,8 +91,8 @@ public class FermeTest {
         FermeResponse actual = fermeService.getFermeById(1);
 
         assertNotNull(actual);
-        assertEquals(fermeResponse.getId(), actual.getId());
-        assertEquals(fermeResponse.getName(), actual.getName());
+        assertEquals(fermeResponse.id(), actual.id());
+        assertEquals(fermeResponse.name(), actual.name());
         verify(fermeRepo).findById(1);
         verify(fermeMapper).toDTO(ferme);
     }
@@ -114,7 +114,7 @@ public class FermeTest {
         FermeResponse actual = fermeService.addFerme(fermeRequest);
 
         assertNotNull(actual);
-        assertEquals(fermeResponse.getName(), actual.getName());
+        assertEquals(fermeResponse.name(), actual.name());
         verify(fermeMapper).requestToEntity(fermeRequest);
         verify(fermeRepo).save(any(Ferme.class));
         verify(fermeMapper).toDTO(ferme);
@@ -153,9 +153,9 @@ public class FermeTest {
         FermeResponse actual = fermeService.updateFerme(updateRequest, 1);
 
         assertNotNull(actual);
-        assertEquals("Updated Ferme", actual.getName());
-        assertEquals("Updated Location", actual.getLocalisation());
-        assertEquals(150.0, actual.getSuperficie());
+        assertEquals("Updated Ferme", actual.name());
+        assertEquals("Updated Location", actual.localisation());
+        assertEquals(150.0, actual.superficie());
         verify(fermeRepo).findById(1);
         verify(fermeRepo).save(any(Ferme.class));
         verify(fermeMapper).toDTO(any(Ferme.class));

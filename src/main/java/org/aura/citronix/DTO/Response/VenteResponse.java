@@ -4,17 +4,15 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class VenteResponse {
-    private Integer id;
-    private LocalDate dateDeVente;
-    private double prixUnitaire;
-    private String clientName;
-    private double revenu;
-    private double quantiteVendue;
-    private RecolteMinimaleResponse recolteVente;
+public record VenteResponse (
+        Integer id,
+        LocalDate dateDeVente,
+        double prixUnitaire,
+        String clientName,
+        double revenu,
+        double quantiteVendue,
+        RecolteMinimaleResponse recolteVente
+) {
+
 }

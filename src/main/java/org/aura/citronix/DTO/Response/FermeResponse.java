@@ -5,16 +5,14 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 
-public class FermeResponse {
-    private int id;
-    private String name;
-    private String localisation;
-    private double superficie;
-    private LocalDate dateDeCreation;
-    private List<ChampMinimalResponse> champs;
-}
+@Builder
+public record FermeResponse (
+        int id,
+        String name,
+        String localisation,
+        double superficie,
+        LocalDate dateDeCreation,
+        List<ChampMinimalResponse> champs
+)
+{ }
