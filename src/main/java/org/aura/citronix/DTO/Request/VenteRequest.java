@@ -1,9 +1,10 @@
 package org.aura.citronix.DTO.Request;
 
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 
 import java.time.LocalDate;
-
+@Builder
 public record VenteRequest (
         @NotNull(message = "La date de vente ne peut pas être nulle.")
         @PastOrPresent(message = "La date de vente doit être dans le passe ou le présent.")
@@ -21,5 +22,4 @@ public record VenteRequest (
 
         @Positive(message = "Le Id de recolte doit être un nombre positif.")
         Integer recolteId
-) {
-}
+) {}

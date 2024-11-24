@@ -13,6 +13,4 @@ public record VenteResponse (
         double revenu,
         double quantiteVendue,
         RecolteMinimaleResponse recolteVente
-) {
-
-}
+) {}
