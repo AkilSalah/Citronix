@@ -2,7 +2,9 @@ package org.aura.citronix.DTO.Request;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.Builder;
 
+@Builder
 public record RecolteDetailRequest (
         @NotNull(message = "Id de recole ne doit pas etre null")
         Integer recolteId,

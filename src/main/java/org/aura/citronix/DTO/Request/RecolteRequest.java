@@ -2,10 +2,11 @@ package org.aura.citronix.DTO.Request;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 import org.aura.citronix.Entities.Enum.Saison;
 
 import java.time.LocalDate;
-
+@Builder
 public record RecolteRequest (
 
         @NotNull(message = "La date de récolte est obligatoire.")
