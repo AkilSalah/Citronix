@@ -18,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
@@ -88,7 +89,7 @@ class RecolteDetailTest {
                 recolte.getId(),
                 recolte.getSaison()
         );
-        verify(detailRepo, times(2)).save(any(DetailRecolte.class));
+        verify(detailRepo, times(1)).save(any(DetailRecolte.class));
         verify(detailMapper).toResponse(any(DetailRecolte.class));
     }
 
@@ -101,6 +102,11 @@ class RecolteDetailTest {
                 .quantite(15.0)
                 .build();
 
+        Arbre arbre = Arbre.builder()
+                .id(1)
+                .dateDePlantation(LocalDate.now())
+                .build();
+
         Recolte recolte = Recolte.builder()
                 .id(1)
                 .quantiteTotale(10.0)
@@ -109,6 +115,7 @@ class RecolteDetailTest {
         DetailRecolte existingDetail = DetailRecolte.builder()
                 .id(detailId)
                 .recolte(recolte)
+                .arbre(arbre)
                 .quantite(10.0)
                 .build();
 
@@ -116,7 +123,7 @@ class RecolteDetailTest {
                 .id(detailId)
                 .quantite(15.0)
                 .build();
-
+        when(arbreRepo.findById(1)).thenReturn(Optional.of(arbre));
         when(detailRepo.findById(detailId)).thenReturn(Optional.of(existingDetail));
         when(detailRepo.save(any(DetailRecolte.class))).thenReturn(existingDetail);
         when(detailMapper.toResponse(any(DetailRecolte.class))).thenReturn(expectedResponse);

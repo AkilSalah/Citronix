@@ -28,6 +28,5 @@ public class Ferme {
     private LocalDate dateDeCreation;
 
     @OneToMany(mappedBy = "ferme",cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Champ> champs = new ArrayList<>();
 }

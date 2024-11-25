@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring",uses = ChampMapper.class)
+@Mapper(componentModel = "spring")
 public interface FermeMapper {
 
     Ferme requestToEntity(FermeRequest request);

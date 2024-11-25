@@ -11,12 +11,13 @@ import org.aura.citronix.Mapper.RecolteMapper;
 import org.aura.citronix.Repositories.ChampRepo;
 import org.aura.citronix.Repositories.RecolteRepo;
 import org.aura.citronix.Services.Interfaces.RecolteInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @Transactional
 public class RecolteImpl implements RecolteInterface {
 
@@ -59,7 +60,6 @@ public class RecolteImpl implements RecolteInterface {
         if(recolteExist) {
             throw new IllegalArgumentException("Ce champ a déjà une récolte pour la saison " + recolteRequest.saison());
         }
-
         existingRecolte.setChamp(champ);
         existingRecolte.setDateDeRecolte(recolteRequest.dateDeRecolte());
         existingRecolte.setSaison(recolteRequest.saison());

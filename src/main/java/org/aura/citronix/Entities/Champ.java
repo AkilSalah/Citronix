@@ -23,9 +23,8 @@ public class Champ {
 
     private double champSurface;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "ferme_id", nullable = false)
-    @JsonBackReference
     private Ferme ferme;
 
     @OneToMany(mappedBy = "champ", cascade = CascadeType.ALL, orphanRemoval = true)

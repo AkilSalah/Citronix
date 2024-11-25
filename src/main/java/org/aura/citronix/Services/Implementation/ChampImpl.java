@@ -69,8 +69,8 @@ import java.util.List;
                 .orElseThrow(() -> new ChampException(id));
         FermeResponse fermeResponse = fermeservice.getFermeById(request.fermeId());
         Ferme ferme = fermeMapper.responseToEntity(fermeResponse);
-        if (request.champSurface() < 0.1) {
-            throw new IllegalArgumentException("La superficie d'un champ doit être au minimum de 0.1 hectare.");
+        if (request.champSurface() < 1000) {
+            throw new IllegalArgumentException("La superficie d'un champ doit être au minimum de 1000 m².");
         }
         if (request.champSurface() > ferme.getSuperficie() * 0.5) {
             throw new IllegalArgumentException("La superficie d'un champ ne peut dépasser 50% de la superficie totale de la ferme.");

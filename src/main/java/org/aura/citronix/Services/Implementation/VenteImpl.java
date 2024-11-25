@@ -11,13 +11,14 @@ import org.aura.citronix.Mapper.VenteMapper;
 import org.aura.citronix.Repositories.RecolteRepo;
 import org.aura.citronix.Repositories.VenteRepo;
 import org.aura.citronix.Services.Interfaces.VenteInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @Transactional
 public class VenteImpl implements VenteInterface {
 

@@ -61,7 +61,6 @@ public class DetailRecolteImpl implements DetailRecolteInterface  {
 
         detailRepo.save(detailRecolte);
         recolte.setQuantiteTotale(recolte.getQuantiteTotale() + recolteDetailRequest.quantite());
-        detailRepo.save(detailRecolte);
         return detailMapper.toResponse(detailRecolte);
     }
 
@@ -69,6 +68,7 @@ public class DetailRecolteImpl implements DetailRecolteInterface  {
     public DetailRecolteResponse updateDetailRecolte(int id, RecolteDetailRequest recolteDetailRequest) {
         DetailRecolte detailRecolte = detailRepo.findById(id)
                 .orElseThrow(() -> new DetailRecolteException(id));
+        Arbre arbre = arbreRepo.findById(recolteDetailRequest.arbreId()).orElseThrow(()-> new ArbreException(recolteDetailRequest.arbreId()));
 
         if (recolteDetailRequest.quantite() != null) {
             double ancienneQuantite = detailRecolte.getQuantite();
@@ -77,6 +77,7 @@ public class DetailRecolteImpl implements DetailRecolteInterface  {
                     detailRecolte.getRecolte().getQuantiteTotale() - ancienneQuantite + nouvelleQuantite
             );
             detailRecolte.setQuantite(nouvelleQuantite);
+            detailRecolte.setArbre(arbre);
         }
         detailRepo.save(detailRecolte);
 

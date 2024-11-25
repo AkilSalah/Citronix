@@ -11,6 +11,4 @@ import org.springframework.stereotype.Repository;
 public interface RecolteRepo extends JpaRepository<Recolte,Integer> {
 @Query("select count (r) > 0 from Recolte r where r.champ.id = :champId and r.saison = :saison")
     Boolean existingRecolteByChampAndSaison(@Param("champId") Integer champId,@Param("saison") Saison saison);
-
-
 }
